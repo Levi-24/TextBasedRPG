@@ -20,38 +20,15 @@ namespace TextBasedRPG
                         Console.Clear();
                         Console.WriteLine("You chose to start a new game.");
 
-                        Character character = new Character();
                         Console.Write("Choose a name: ");
-                        character.Name = Console.ReadLine();
+                        string Name = Console.ReadLine();
+                        
+                        string[] StatusEffects = new string[] { "None" };
 
-                        Console.WriteLine("Choose a class:");
-                        Console.WriteLine("\tKnight = K");
-                        Console.WriteLine("\tMage = M");
-                        ConsoleKey classSelect = Console.ReadKey().Key;
-                        do
-                        {
-                            
-                            switch (classSelect)
-                            {
-                                //Knight class selected
-                                case ConsoleKey.K:
-                                    character.Class = true;
-                                    break;
-                                //Mage class selected
-                                case ConsoleKey.M:
-                                    character.Class = false;
-                                    break;
-                                //Invalid class selection
-                                default:
-                                    Console.WriteLine("Please choose a valid class.");
-                                    classSelect = Console.ReadKey().Key;
-                                    break;
-                            }
-                        } while (classSelect != ConsoleKey.K || classSelect != ConsoleKey.M);
-
-                        Console.WriteLine("--------------");
-                        Console.WriteLine(character.Name);
-                        Console.WriteLine(character.Class);
+                        Character character = new Character(Name, StatusEffects);
+                        StreamWriter writer = new StreamWriter($@"..\..\..\Characters\{character.Name}.txt");
+                        writer.WriteLine($"{character.Name};{character.Level};{character.Experience};{character.Health};{character.Stamina};{character.StatusEffects};{character.Strength};{character.Speed};{character.Luck};{character.Gold};{character.StatPoints}");
+                        writer.Close();
                         break;
                         //Load Game
                     case ConsoleKey.D2:

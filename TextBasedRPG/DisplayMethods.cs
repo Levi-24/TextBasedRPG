@@ -23,5 +23,12 @@
             Console.WriteLine("\t2. Load Game");
             Console.WriteLine("\t3. Exit");
         }
+        public void RemoveLastCharacter()
+        {
+            int currentLeft = Console.CursorLeft;
+            int currentTop = Console.CursorTop;
+            Console.SetCursorPosition(currentLeft - 1, currentTop);
+            Console.Write(' ');
+        }
     }
 }
